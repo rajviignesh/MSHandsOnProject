@@ -1,0 +1,37 @@
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+.box-user{
+  width: 90%;
+  height: 85vh;
+  margin-top: 65px;
+}
+
+.scrollable{
+  overflow-y: auto;
+  height: 65vh;
+  width: 100%;
+  padding-left: 10px;
+  padding-bottom: 20px;
+}
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.search-hero {
+  width: 1000px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+}
+
+
+.user-wrapper .mat-card {
+  padding: 20px 40px 30px;
+}
+
+  .mat-form-field {
+    margin-top: 16px;
+  }

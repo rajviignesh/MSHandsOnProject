@@ -1,0 +1,47 @@
+<mat-toolbar color="primary" class="app-header">
+    <div><a mat-button href="hhttps://www.accolite.com/" target="_blank" class="accolite">Accolite Digital</a></div>
+    <span class="flexExpand"></span>
+    <span class="nav-tool-items">
+      <a mat-button routerLink="../login" routerLinkActive="active">Log in</a>
+      <a mat-button mat-raised-button routerLink="../register" routerLinkActive="active">Register</a>
+    </span>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Log in</mat-card-title>
+      </mat-card-header>
+  
+      <form class="example-form">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl] = "email" [errorStateMatcher]="matcher" placeholder="E-Mail">
+            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput [formControl] = "password" type="password" [errorStateMatcher]="matcher" placeholder="Password">
+            <mat-error *ngIf="password.hasError('required')">
+                Password is <strong>required</strong>
+                </mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" (click) = "signin()" class="btn-block">Log in</button>
+        <button mat-button (click) = "signinWithGoogle()" class="btn-block" style="padding: 1rem;">
+          <mat-icon style="width: 50px; height:30px"
+                    svgIcon="logo"></mat-icon> Login With Google
+          </button>  
+      </form>
+    </mat-card>
+  
+  </div>

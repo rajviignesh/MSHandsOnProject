@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="app-header">
+    <div><a mat-button href="https://www.accolite.com/" target="_blank" class="accolite">Accolite Digital</a>
+      <a mat-button routerLink="../" routerLinkActive="active">Home</a>
+      <a mat-button routerLink="../trends" routerLinkActive="active">Trends</a></div>
+    
+    <span class="flexExpand"></span>
+    <span class="nav-tool-items">
+        <a mat-button mat-raised-button routerLink="../user/addCandidate" routerLinkActive="active">Create Candidate</a>
+        <a mat-button (click) = "logout()" routerLinkActive="active">Log Out</a>
+    </span>
+  </mat-toolbar>
+  <div class="user-wrapper" style="margin-top: 100px;" fxLayout="column" fxLayoutAlign="top center">
+    <div class="scrollable">
+        <div fxLayout="column" fxLayoutAlign="center center" *ngFor="let graphData of graphDataList" >
+            <app-expandable-graph [graphData] = "graphData"></app-expandable-graph>
+          </div>
+    </div>
+    
+  </div>
+  

@@ -1,0 +1,66 @@
+<mat-toolbar color="primary" class="app-header">
+    <div><a mat-button href="https://www.accolite.com/" target="_blank" class="accolite">Accolite Digital</a>
+      <a mat-button routerLink="../user" routerLinkActive="active">Home</a>
+      <a mat-button routerLink="../user/trends" routerLinkActive="active">Trends</a></div>
+    
+    <span class="flexExpand"></span>
+    <span class="nav-tool-items">
+        <a mat-button mat-raised-button routerLink="../user/addCandidate" routerLinkActive="active">Create Candidate</a>
+        <a mat-button (click) = "logout()" routerLinkActive="active">Log Out</a>
+    </span>
+  </mat-toolbar>
+  
+  <div class="user-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box-user">
+            <mat-card-title>Welcome {{Username}}</mat-card-title>
+            <div style="margin-top: 15px;" fxLayout = "column" fxLayoutAlign="center center" >
+              <input class="search-hero" type="text" placeholder="Search" [(ngModel)]="searchText" #searchbar>
+              <div fxLayout="row" fxLayoutAlign="center center" >
+                <mat-form-field style="margin-left: auto;">
+                  <mat-label>Institution</mat-label>
+                  <mat-select [formControl]="institution" multiple>
+                    <mat-select-trigger>
+                      {{institution.value ? institution.value[0] : ''}}
+                      <span *ngIf="institution.value?.length > 1" class="example-additional-selection">
+                        (+{{institution.value.length - 1}} {{institution.value?.length === 2 ? 'other' : 'others'}})
+                      </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let inst of instList" [value]="inst">{{inst}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field style="margin-left: 30px;" >
+                  <mat-label>Joining Location</mat-label>
+                  <mat-select [formControl]="location" multiple>
+                    <mat-select-trigger>
+                      {{location.value ? location.value[0] : ''}}
+                      <span *ngIf="location.value?.length > 1" class="example-additional-selection">
+                        (+{{location.value.length - 1}} {{location.value?.length === 2 ? 'other' : 'others'}})
+                      </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let loco of locoList" [value]="loco">{{loco}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button type="button" style="margin-left: 20px;" id="button-addon2" (click) = "onFilterSearch()" mat-button color="accent">Filter</button>
+                          <button type="button"  (click) = "clearFilter()" mat-button color="accent" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                </div>
+            </div>
+            
+            <div class="scrollable">
+              
+            <div fxLayout="row" fxLayoutAlign="center center" *ngFor="let activeCand of activeCandDetails | filter: searchText |
+                slice: lowValue : highValue " >
+                <app-candidate-card [activeCand] = "activeCand"></app-candidate-card>
+              </div>
+            </div>
+            <mat-paginator [length]="activeCandDetails.length" [pageSize]="pageSize" 
+            (page)="getPaginatorData($event)">
+          
+          </mat-paginator>
+        
+    </mat-card>
+  
+  </div>
+
+  

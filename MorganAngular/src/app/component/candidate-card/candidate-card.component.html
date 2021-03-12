@@ -1,0 +1,34 @@
+<mat-card class="candi-box" style="margin-top: 15px;" [class.mat-elevation-z6]= true>     
+    <h2>{{activeCand.firstName}} {{activeCand.lastName}}</h2>
+  <mat-card-content style="margin-left: 20px;">
+    <div fxLayout="row">
+      <p>
+         <strong>Email ID:</strong> {{activeCand.email}}<br>
+      </p>
+      <div style="margin-left: 50px;"></div>
+        <span><strong>Skills:</strong></span> 
+         <div fxLayout="column">
+          <div style="margin-left: 20px;" *ngFor="let skill of activeCand.skillSet" >
+            {{skill.skillName}} 
+          </div> 
+         </div>
+         <div style="margin-left: 50px;"></div>
+            <p>
+               <strong>Institution Name: </strong>  {{activeCand.instData.instName}}<br>
+            <strong>City: </strong>  {{activeCand.instData.city}}<br>
+            <strong>Pincode: </strong>  {{activeCand.instData.pincode}}
+            </p>
+            <div style="margin-left: 50px;"></div>
+            <p>
+               <strong>Joining Location:</strong>  {{activeCand.locoData.locationName}}<br>
+            <strong>City:</strong>  {{activeCand.locoData.city}}<br>
+            <strong>Pincode:</strong>  {{activeCand.locoData.pincode}}
+            </p>
+           </div>
+           <span>Status: </span>
+           <span  [style.color]=" !activeCand.status ? 'red' : 'green' "> {{ activeCand.status ? "Active" : "Deactivated" }}</span>
+           <button style="margin-left: 50px;" (click) = "changeStatus()" mat-button color="accent">Change Status</button>
+           <button style="margin-left: 50px;" (click) = "updateCandidate()" mat-button color="accent">Update Details</button>
+      
+  </mat-card-content>
+</mat-card> 
